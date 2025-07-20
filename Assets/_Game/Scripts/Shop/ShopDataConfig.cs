@@ -52,3 +52,4 @@ public enum OfferID
     pack_money5 = 44,
     pack_money6 = 45,
 }
+

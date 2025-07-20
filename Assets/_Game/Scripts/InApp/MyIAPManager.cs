@@ -16,18 +16,18 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
     public static MyIAPManager instance;
     public const string product_noads = "remove_ads";
 
-    public const string salePack1 = "pack1";
-    public const string salePack2 = "pack2";
-    public const string piggyPack = "piggy_pack";
-    public const string PackHammer = "pack_hammer";
-    public const string PackFillUp = "pack_fillup";
-    public const string PackReRoll = "pack_reroll";
-    public const string PackMoney1 = "pack_money1";
-    public const string PackMoney2 = "pack_money2";
-    public const string PackMoney3 = "pack_money3";
-    public const string PackMoney4 = "pack_money4";
-    public const string PackMoney5 = "pack_money5";
-    public const string PackMoney6 = "pack_money6";
+    public const string salePack1 = "slice_party_pack1";
+    public const string salePack2 = "slice_party_pack2";
+    //public const string piggyPack = "slice_party_piggy_pack";
+    public const string PackHammer = "slice_party_pack_hammer";
+    public const string PackFillUp = "slice_party_pack_fillup";
+    public const string PackReRoll = "slice_party_pack_reroll";
+    public const string PackMoney1 = "slice_party_pack_money1";
+    public const string PackMoney2 = "slice_party_pack_money2";
+    public const string PackMoney3 = "slice_party_pack_money3";
+    public const string PackMoney4 = "slice_party_pack_money4";
+    public const string PackMoney5 = "slice_party_pack_money5";
+    public const string PackMoney6 = "slice_party_pack_money6";
 
     UnityAction buyFailed, buySuccess;
     void Awake() {
@@ -60,7 +60,7 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
         builder.AddProduct(salePack1, ProductType.Consumable);
         builder.AddProduct(salePack2, ProductType.Consumable);
-        builder.AddProduct(piggyPack, ProductType.Consumable);
+        //builder.AddProduct(piggyPack, ProductType.Consumable);
         builder.AddProduct(PackHammer, ProductType.Consumable);
         builder.AddProduct(PackFillUp, ProductType.Consumable);
         builder.AddProduct(PackReRoll, ProductType.Consumable);
@@ -144,7 +144,7 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
         switch (productID) {
             case salePack1:
             case salePack2:
-            case piggyPack:
+            //case piggyPack:
             case PackHammer:
             case PackFillUp:
             case PackReRoll:
