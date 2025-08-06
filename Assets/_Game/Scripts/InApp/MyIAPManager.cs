@@ -28,6 +28,7 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
     public const string PackMoney4 = "slice_party_pack_money4";
     public const string PackMoney5 = "slice_party_pack_money5";
     public const string PackMoney6 = "slice_party_pack_money6";
+    public const string prefix = "slice_party_";
 
     UnityAction buyFailed, buySuccess;
     void Awake() {
@@ -140,7 +141,6 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
         return PurchaseProcessingResult.Complete;
     }
     private void OnExecutePurchase(string productID) {
-        //Debug.Log(productID + " purchased");
         switch (productID) {
             case salePack1:
             case salePack2:
@@ -155,9 +155,14 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
             case PackMoney5:
             case PackMoney6:
                 // TODO //
+                if (productID.StartsWith(prefix)) {
+                    productID = productID.Substring(prefix.Length);
+                }
+
                 ShopPack pack = ProfileManager.Instance.dataConfig.shopDataConfig.GetShopPack(productID);
                 if (pack != null)
                 {
+                    Debug.Log(productID + pack.rewards);
                     GameManager.Instance.GetItemRewards(pack.rewards);
                 }
                 ////ProfileManager.Instance.playerData.globalResourceSave.OnSaveBoughtIAPPackage(offerData.offerID);
@@ -177,6 +182,8 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
     public void Buy(string productId, UnityAction buySuccess, UnityAction buyFailed = null) {
         this.buyFailed = buyFailed;
         this.buySuccess = buySuccess;
+        Debug.Log($"product {productId}");
+        productId = prefix + productId;
         
         // If Purchasing has been initialized ...
         if (IsInitialized()) {
@@ -208,7 +215,9 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
 //        OnExecutePurchase(productId);
 //#endif
     }
-    public string GetProductPriceFromStore(string id) {
+    public string GetProductPriceFromStore(string id)
+    {
+        id = prefix + id;
         if (m_StoreController != null && m_StoreController.products != null) {
             if (m_StoreController.products.WithID(id) == null) return "";
             return m_StoreController.products.WithID(id).metadata.localizedPriceString;
