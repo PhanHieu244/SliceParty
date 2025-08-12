@@ -33,7 +33,7 @@ public class CameraManager : MonoBehaviour
         persent = (widthScene / heightScene) / persent;
         currentCamerasize = currentSize / persent;
         cameraSizeUsingItem = cameraSizeUsingItem / persent;
-        mainCamera.orthographicSize = currentCamerasize + 1f;
+        //mainCamera.orthographicSize = currentCamerasize + 1f;
         //cameraSizeUsingItem = currentCamerasize - 1f;
     }
 
@@ -55,10 +55,10 @@ public class CameraManager : MonoBehaviour
 
     public void FirstCamera() {
         
-        DOVirtual.Float(mainCamera.orthographicSize, currentCamerasize, 1f, (value) =>
+        /*DOVirtual.Float(mainCamera.orthographicSize, currentCamerasize, 1f, (value) =>
         {
             mainCamera.orthographicSize = value;
-        });
+        });*/
     }
 
     //private void Update()
@@ -70,10 +70,10 @@ public class CameraManager : MonoBehaviour
     public void UsingItemMode() {
         mainCamera.transform.DOMove(positionUsingItem, .5f).SetEase(Ease.OutCubic);
         mainCamera.transform.DORotate(rotateCameraUsingItem, .5f).SetEase(Ease.OutCubic);
-        DOVirtual.Float(mainCamera.orthographicSize, cameraSizeUsingItem, 1f, (value) =>
+        /*DOVirtual.Float(mainCamera.orthographicSize, cameraSizeUsingItem, 1f, (value) =>
         {
             mainCamera.orthographicSize = value;
-        }).SetEase(Ease.InOutSine);
+        }).SetEase(Ease.InOutSine);*/
        
     }
 
@@ -81,10 +81,10 @@ public class CameraManager : MonoBehaviour
     {
         mainCamera.transform.DOMove(positionDefault, .5f).SetEase(Ease.OutCubic);
         mainCamera.transform.DORotate(rotateCameraDefault, .5f).SetEase(Ease.OutCubic);
-        DOVirtual.Float(mainCamera.orthographicSize, currentCamerasize, 1f, (value) =>
+        /*DOVirtual.Float(mainCamera.orthographicSize, currentCamerasize, 1f, (value) =>
         {
             mainCamera.orthographicSize = value;
-        }).SetEase(Ease.InOutSine);
+        }).SetEase(Ease.InOutSine);*/
     }
     ShowRoom showRoomTemp;
     ShowRoom currentShowRoom;

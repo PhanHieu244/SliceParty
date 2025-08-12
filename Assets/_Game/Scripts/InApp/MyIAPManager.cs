@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ChuongCustom;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
@@ -183,10 +184,27 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
         this.buyFailed = buyFailed;
         this.buySuccess = buySuccess;
         Debug.Log($"product {productId}");
+
+        IAPManager.OnPurchaseSuccess = buySuccess.Invoke;
+        switch (productId)
+        {
+            case salePack1: IAPManager.Instance.BuyProductID(IAPKey.C_PACK1); break;
+            case salePack2: IAPManager.Instance.BuyProductID(IAPKey.C_PACK2); break;
+            case PackHammer : IAPManager.Instance.BuyProductID(IAPKey.C_PACK3); break;
+            case PackFillUp : IAPManager.Instance.BuyProductID(IAPKey.C_PACK4); break;
+            case PackReRoll : IAPManager.Instance.BuyProductID(IAPKey.C_PACK5); break;
+            case PackMoney1 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK6); break;
+            case PackMoney2 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK7); break;
+            case PackMoney3 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK8); break;
+            case PackMoney4 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK9); break;
+            case PackMoney5 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK10); break;
+            case PackMoney6 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK11); break;
+        }
         productId = prefix + productId;
         
         // If Purchasing has been initialized ...
         if (IsInitialized()) {
+            
             // ... look up the Product reference with the general product identifier and the Purchasing 
             // system's products collection.
             Product product = m_StoreController.products.WithID(productId);
