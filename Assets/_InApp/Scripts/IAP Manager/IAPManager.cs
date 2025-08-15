@@ -4,6 +4,7 @@ using ChuongCustom;
 using CI.WSANative.Common;
 using CI.WSANative.Store;
 using Jackal;
+using UnityEngine;
 
 public class IAPManager : PersistentSingleton<IAPManager>
 {
@@ -18,6 +19,7 @@ public class IAPManager : PersistentSingleton<IAPManager>
     //store id get from microsoft partner 
     public void BuyProductID(string storeid, int points = 0)
     {
+        Debug.Log($"BUY {storeid}");
         WSANativeStore.RequestPurchase(storeid, result =>
         {
             UnityEngine.Debug.Log(result.Status);

@@ -184,7 +184,7 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
         this.buyFailed = buyFailed;
         this.buySuccess = buySuccess;
         Debug.Log($"product {productId}");
-
+        productId = prefix + productId;
         IAPManager.OnPurchaseSuccess = buySuccess.Invoke;
         switch (productId)
         {
@@ -200,7 +200,7 @@ public class MyIAPManager : MonoBehaviour, IStoreListener {
             case PackMoney5 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK10); break;
             case PackMoney6 : IAPManager.Instance.BuyProductID(IAPKey.C_PACK11); break;
         }
-        productId = prefix + productId;
+
         
         // If Purchasing has been initialized ...
         if (IsInitialized()) {
